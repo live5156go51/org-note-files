@@ -1,0 +1,23 @@
+yasnippet 创建模板
+* latex-mode
+  - [keyword] cjkutf8beamer
+    创建一个简单幻灯片
+  - [keyword] cframe
+    创建一个slide
+  
+* snippet-mode
+  - [keyword] csnippet
+    快速创建snippet模板
+   
+* php-mode
+  - [keyword] phpclass
+    创建php类
+  - [keyword] mysqlconnet
+    创建mysql connet
+  - [keyword] phpfunction
+    创建php 函数
+
+
+#NAME : FILE *fp = fopen( **** ***);
+# --
+FILE *${fp} = fopen(${"file"},"${$$(yas/choose-value '("r+" "r" "w" "w+" "a" "a+"))}");

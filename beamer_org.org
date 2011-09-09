@@ -1,0 +1,174 @@
+#+TITLE:     使用emacs编写slide in org-mode
+#+AUTHOR:    Junstrix
+#+EMAIL:     junstrix@gmail.com
+#+DATE:      2011-09-08 四
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: http://imljp.info
+#+XSLT:
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+BEAMER_FRAME_LEVEL: 2
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+* 安装更高的版本支持
+** 安装　org-mode
+   - 下载
+   - 解压安装
+     tar xvf org-xxx.tar -C \~/path/to/plugins
+     make 
+     make install
+   - 设置.emacs
+#+srcname: Emacs Lisp
+#+begin_src Emacs Lisp
+(setq load-path (cons "~/.emacs.d/plugins/org-7.7/lisp" load-path))
+(setq load-path (cons "~/.emacs.d/plugins/org-7.7/contrib" load-path))
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+#+end_src
+* org-mode beamer相关配置
+** org-mode beamer 
+一个slide首先设置slide相关属性，包括标题、作者、日期、Email等
+   - C-c C-e t　插入并编辑标题、作者、日期等
+   - beamer环境配置(org-insert-beamer-options-template)
+#+begin_src beamer
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args)
+%4BEAMER_col(Col) %10BEAMER_extra(Extra)
+#+end_src
+* 一个slide例子
+** A Simple Slide Example
+This slide consists of some text with a number of bullet points:
+
+- the first, very @important@, point!
+- the previous point shows the use of the special markup which
+  translates to the Beamer specific /alert/ command for highlighting
+  text.
+
+
+The above list could be numbered or any other type of list and may
+include sub-lists.
+* 如何使用xelatex编译org-mode导出的Tex源码
+** xelatex编译TeX
+因为emacs导出没有直接xelatex的支持，而XeTeX的优点就不说了，所以我们要自己修改
+emacs in org-mode 导出的TeX源码，以Xelatex能正确编译
+- 增加必要的宏包
+#+begin_example xetex_config
+  \usepackage{fontspec}
+  \usepackage{hyperref}  %bookmark and add it!!!
+  \setsansfont{Adobe Kaiti Std} %command list fonts:fc-list :lang=zh-cn
+  \XeTeXlinebreaklocale "zh"
+  \XeTeXlinebreakskip=0pt plus 1pt minus 0.1pt
+  \widowpenalty=10000
+#+end_example
+xetex导盲区设置请参照链接:[[https://github.com/live5156go51/code/blob/master/Tex/moderncv/resume.tex][xetex配置例子]]
+- 编译 xelatex file.tex
+- 官方教程　[[http://orgmode.org/worg/org-tutorials/org-beamer/tutorial.html]]
+* 更漂亮的slide multiplexer
+** A more complex slide
+This slide illustrates the use of Beamer blocks.  The following text,
+with its own headline, is displayed in a block:
+
+使用属性快捷键:C-c C-b(org-beamer-select-environment)
+*** Org mode increases productivity 				  :B_theorem:
+    :PROPERTIES:
+    :BEAMER_env: theorem
+    :END:
+    - org mode means not having to remember LaTeX commands.
+    - it is based on ascii text which is inherently portable.
+    - Emacs!
+
+    \hfill \(\qed\)
+** 两列
+*** 文字块					      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.4
+    :END:
+    - 这个slide由两列组成
+    - 第一列没有heading和文字
+    - 第二列包含一幅图片和例子文字块
+*** 一幅图片						    :B_example:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: example
+    :BEAMER_col: 0.6
+    :END:
+　[[file://tmp/FUbib.png]]
+
+** 代码演示
+   :PROPERTIES:
+   :BEAMER_envargs: [t]
+   :END:
+*** Octave 源代码 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_col: 0.45
+    :BEAMER_env: block
+    :END:
+#+srcname: octaveexample
+#+begin_src perl :results output :exports both
+A = [1 2 ; 3 4]
+b = [1; 1];
+x = A\b
+#+end_src
+
+*** 输出 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :BEAMER_env: block
+    :BEAMER_envargs: <2->
+    :END:
+
+#+results: octaveexample
+#+begin_example
+A =
+
+   1   2
+   3   4
+
+x =
+
+  -1
+   1
+
+#+end_example　
+* This is the first structural section
+     
+** Frame 1 \\ with a subtitle
+*** Thanks to Eric Fraga                                      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_envargs: C[t]
+    :BEAMER_col: 0.5
+    :END:
+    for the first viable beamer setup in Org
+*** Thanks to everyone else                                   :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_col: 0.5
+    :BEAMER_env: block
+    :BEAMER_envargs: <2->
+    :END:
+    for contributing to the discussion
+**** This will be formatted as a beamer note                  :B_note:
+** Frame 2 \\ where we will not use columns
+*** Request                                                   :B_block:
+    Please test this stuff!
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:

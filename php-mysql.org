@@ -1,0 +1,77 @@
+PHP Mysql 操作
+* 配置mysql的config.php
+#+BEGIN_SRC config -n
+<?php /* config file about mysql */
+$db_host = "localhost";			/* 数据库主机localhost */
+$db_user = "ljp";			/* 数据库用户名 */
+$db_pass = "13456";			/* 密码 */
+$link = mysql_connect($db_host,$db_user,$db_pass)
+  or die('Could not connect: '. mysql_error()); 
+?>
+#+END_SRC
+* 创建一个数据库
+#+BEGIN_SRC create_databases -n
+<?php
+$dabases_name = "c_test";	/* 配置数据库名称 */
+require("config.php");
+$sql = "CREATE DATABASE $dabases_name";
+if (mysql_query($sql, $link)) {
+  echo "Database $dabases_name created successfully\n";
+} else {
+  echo 'Error creating database: ' . mysql_error() . "\n";
+}
+mysql_close($link);
+?>
+#+END_SRC
+* 删除数据库
+#+BEGIN_SRC drop_databases -n
+<?php 				/* 删除数据库 */
+$dabases_name = "c_test";	/* 数据库名称 */
+require("config.php");
+$sql = "DROP DATABASE $dabases_name";
+if (mysql_query($sql,$link))
+  {
+    echo "Databases $dabases_name was successfully dropped\n";
+  } else {
+  echo 'Error dropping databases; ' .mysql_error() . "\n";
+}
+
+mysql_close($link);
+?>
+#+END_SRC
+* 创建数据表
+#+BEGIN_SRC create_tables -n
+<?php				/* 创建数据表 */
+$dabases_name = "c_test";	/*数据库名称 */
+require("config.php");
+mysql_select_db($dabases_name,$link) or die('Could not select databases ' . mysql_error());
+$sql = "CREATE TABLE person123
+(
+personID int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(personID),
+FirstName varchar(15),
+LastName varchar(15),
+Age int
+)";
+if(mysql_query($sql,$link)) {
+  echo '成功创建数据表';
+} else {
+  echo 'Error creating tables: ' . mysql_error() . "\n";
+}
+mysql_close($link);
+?>
+#+END_SRC
+* 插入数据表内容
+#+BEGIN_SRC insert_table -n
+<?php				/* 插入表数据 */
+$dabases_name = "c_test";	/* 数据库名称 */
+require("config.php");
+mysql_select_db($dabases_name,$link) or die('Could not select dabases: ' . mysql_error());
+mysql_query("INSERT INTO person(FirstName,LastName,Age)
+VALUES('Junpeng','Li','20')");
+mysql_close($link);
+?>
+#+END_SRC
+
+更多资源:http://cn2.php.net/manual/en/book.mysql.php
+通过这次的小学习,对于初懂数据库我了解了不少,phpmyadmin听说很不错,PHP编程时需要到的命令都可以通过它来查看...

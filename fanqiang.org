@@ -1,0 +1,19 @@
+用ssh+proxychains翻墙不求人,只需两步
+* 连接上 ssh
+  - ssh 远程主机端口
+    ssh login_name@your_IP.com -D 9050(端口)
+  
+* proxychain 配置
+  - 找到修改
+#+BEGIN_SRC pro
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to "tor"
+socks4 	127.0.0.1 9050(默认为9050,此端口根据以上的ssh -D 9050 修改)
+
+#+END_SRC
+* 运行任何想翻墙的程序
+  - 只需在程序前敲上proxychain firefox &
+    - 例如上twitter: proxychain proxychains gwibber &
+

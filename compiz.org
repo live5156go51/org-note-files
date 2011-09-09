@@ -1,0 +1,13 @@
+快捷键设置
+* 特效
+** 启用震颤窗口
+   - 窗口吸附 <Super> Down
+** 启用运动朦胧
+   - 切换运动朦胧 <Super> Up
+** 启用水纹效果
+   - 启动 <Control> <Super>
+   - 触发降雨 <Control> <Super> Left
+   - 触发雨刷 <Control> <Super> Right
+** 启用在屏幕上绘制火焰
+   - 启动 <Alt> <Super> Up
+   - 清除 <Alt> <Super> Down 

@@ -1,0 +1,38 @@
+Gedit使用Gedit LaTeX Plugin插件通过 XeTeX 处理文排版
+
+
+以前用Tex,就是用Emacs的autex扩展来处理,这已经很hacking了,今天又发现以一舒服的Tex排版方式,
+那就是通过简洁强大的Gedit的Gedit LaTeX Plugin插件XeLatex处理中文排版,之前在红联社区里发过
+CJK的中文排版解决方案,大家都觉得更推荐XeTex,于是在网上找在ubuntu上XeTex方案,其中碰到困难不少,
+在这里很简单的就实现了.
+可以这样来:
+没装上Texlive请:sudo apt-get install texlive cjk-latex latex-cjk-all latex-beamer 
+Gedit为ubuntu默认文本编辑器,然后再装上Gedit LaTeX Plugin:sudo apt-get install gedit-latex-plugin
+
+在编辑 -> 首选项 -> Gedit LaTeX Plugin -> 配置插件 -> Tools
+点击第一项属性,Label标签改为:XeLaTeX → PDF(Embedded Preview)
+            jobs标签全部删除,然后添加 xetex "$filename",Must Succeed钩上,post-processor选择LaTexPostProcessor
+确定就OK了.
+Ctrl+F9调出底部面板
+
+按Ctrl+Alt+1编译
+按Ctrl+Shift+T预览
+
+Gedit LaTeX Plugin使我改变Gedit的看法,它很强大,用起来还是很方便,高效,使用这个插件通过鼠标点击
+各种命令插入公式,图片,各种代码高亮都很简单,能比上各种Tex集成IDE,而且通过插件属性的片断还可以定制模板,和autex有的一比..
+XeTex中文测试:
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\setmainfont{Droid Sans Fallback}
+\title{Gedit编辑Tex排版中文测试}
+\author{ljp}
+\date{\today}
+\begin{document}
+\maketitle
+中文测试...
+\end{document}

@@ -1,0 +1,59 @@
+blender 学习笔记
+* 视图
+	- Python Console	 blender Python控制台
+	  通过Console菜单 有最大化，最小化，语言选择,clear,在另一窗口打开的命令
+	- File Browser		 blender 文件浏览器
+	  有基本的文件管理功能，另有书签、过滤功能，方便定位和过滤条件寻找需要的文本、音乐、blender等文件。
+	- Info			 blender 信息视图
+	  有文件<file>，增加物体<add>,渲染<render>,帮助<help>菜单，另有多种窗口选择方案<可以自定义>，方便脚本、UV editor 、Video editor等操作编辑，有场景选择,Blender渲染器等	
+	- User Preferences	用户设定参数属性
+	  Interface-Editing-Input(Emulate Numpad模拟数字键)-Add-Ons(插件)-Themes-File-System
+	- Outline		blender 大纲
+	  有列表、隐藏、选择、搜索、分解实体等功能
+	- Properties	blender实体属性
+	  有渲染<render>、场景<scene>、World、对象<Object>、对象约束<Object Constraints>、修饰器<Modifiers>、对象数据<Object data>、材质<Material>、纹理<Texture>、粒子<Particles>、物理<physics>这些选项
+	- Logic Editor		逻辑编辑器
+	- Node Editor		节点编辑器
+	- Text Editor		文字编辑器
+	  编辑脚本并执行，有语法标亮，显示行号等功能
+	- Video Sequence Editor
+	- UV/Image Editor	图象编辑器
+	- NLA Editor
+	- DopeSheet		简报窗口
+	- Graph Editor		动画曲线编辑器
+	- Timeline		时间轴
+	  动画时间轴操作
+	- 3D View		3D视图编辑器
+	  鼠标操作有移动，缩放，旋转，变形等功能，锁定x轴、y轴或z轴移动、缩放、旋转、变形等 	
+	  
+* 快捷方式
+	- 窗口操作
+		- Shift+space
+		- Ctrl + UP	最大化
+		- Ctrl + down	最小化
+	- 参数
+		- Ctrl + U	保存用户设置参数
+	- 物体级3d编辑操作
+		- 鼠标向上向下滑动	缩放操作
+		- MMB		旋转整个场景<画布>
+		- Shift + MMB	移动整个场景<画布>
+		- Shift + Alt + 鼠标向上向下滑动	向上向下旋转整个场景
+		- Ctrl + Alt + 鼠标向上向下滑动		顺时逆时旋转整个场景
+		- Shitf+鼠标向上向下滑动	向上向下移动整个场景
+		- Ctrl+鼠标向上向下滑动		向左向右移动整个场景
+		- Alt +鼠标向上向下滑动		滑动时间轴操作
+		- 在对实体进行移动、缩放、旋转时按Shift键可进行缓慢操作
+		- F12 渲染
+		- Ctrl+Alt+0		照相机取景控制
+		- Shift + RMB		选择实体
+		- Shift + D		复制实体
+		- TAB			进入编辑模式
+		- G			鼠标移动	
+		- Ctrl + TAB		编辑模式三种方式
+		- Z			透明与实体切换
+		- E			编辑模式增加实体
+		- Shift+F		切换视角
+		- Shift+A		增加实体
+		
+		
+		

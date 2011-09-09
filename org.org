@@ -1,0 +1,135 @@
+#+TITLE:     Emacs org-mode 学习笔记
+#+AUTHOR:    Junstrix
+#+EMAIL:     junstrix@gmail.com
+#+DATE:      2011-09-08 四
+#+DESCRIPTION: 学习emacs org-mode留下的笔记　http://orgmode.org/orgguide.pdf
+#+KEYWORDS: emacs org-mode hacking
+#+LANGUAGE:  zh
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   http://imljp.info/?page_id=218
+#+LINK_HOME: http://imljp.info
+
+* TAB / S-TAB(显示)
+|-------+-------------------------------------|
+| Tab   | FOLDED/CHILDREN/SUBTREE之间切换显示 |
+|-------+-------------------------------------|
+| S-Tab | OVERVIEW/CONTENTS/SHOW ALL切换显示  |
+|-------+-------------------------------------|
+  
+* Motion 移动
+|---------+-----------------------------------|
+| C-c C-n | Next heading.                     |
+|---------+-----------------------------------|
+| C-c C-p | Previous heading.                 |
+|---------+-----------------------------------|
+| C-c C-f | Next heading same level.          |
+|---------+-----------------------------------|
+| C-c C-b | Previous heading same level.      |
+|---------+-----------------------------------|
+| C-c C-u | Backward to higher level heading. |
+|---------+-----------------------------------|
+
+* Structure editing(文件结构编辑)
+
+|----------------+----------------------------------------------------|
+| M-RET          | 插入一个同等的Headingline                          |
+|----------------+----------------------------------------------------|
+| M-S-RET        | 插入同等Headingline新的TODO                        |
+|----------------+----------------------------------------------------|
+| M-LEFT/RIGHT   | 增或减目前Heading显示结构等级                      |
+|----------------+----------------------------------------------------|
+| M-S-LEFT/RIGHT | 　Promote/demote the current subtree by one level. |
+|----------------+----------------------------------------------------|
+| M-S-UP/DOWN    | 移动headingline                                    |
+|----------------+----------------------------------------------------|
+| C-c C-w        | emacs 书签                                         |
+|----------------+----------------------------------------------------|
+
+* Footnotes(脚注)
+|---------+---------------------------------------|
+| C-c C-c | Jump between definition and reference |
+|---------+---------------------------------------|
+This is a Footnotes[fn:1] .
+[fn:1] Example of Footnotes.
+
+* Tables(表格)
+** Creation and conversion(创建和转换)
+
+|-------+----------|
+| C-c \ | 创建表格 |
+|-------+----------|
+** Re-aligning and field motion(表格排版和表格之间移动)
+|---------+-------------------------------------------------------------------------------|
+| C-c C-c | Re-align the table without moving the cursor.                                 |
+| TAB     | Re-align the table, move to the next field. Creates a new row if necessary.   |
+| S-TAB   | Re-align, move to previous field.                                             |
+| RET     | Re-align the table and move down to next row. Creates a new row if necessary. |
+|---------+-------------------------------------------------------------------------------|
+** Column and row editing(表格行与列编辑)
+|------------------+--------------------------------------------------------------------------------------------------------------|
+| M-RIGHT / M-LEFT | Move the current column left/right.(向左或向右移动目前的列)                                                  |
+| M-S-LEFT         | Kill the current column.（删除kill目前列）                                                                   |
+| M-S-RIGHT        | Insert a new column to the left of the cursor position.(向左在光标处插入新列)                                |
+| M-UP / M-DOWN    | Move the current row up/down.(向上或下移动行)                                                                |
+| M-S-UP           | Kill the current row or horizontal line.(删除kill目前行)                                                     |
+| M-S-DOWN         | Insert a new row above the current row. With a prefix argument, the line is  created below the current one.  |
+| C-c -            | Insert a horizontal line below current row. With a prefix argument, the line created above the current line. |
+| C-c RET          | Insert a horizontal line below current row, and move the cursor into the row below that line.                |
+| C-c ^(排序)      | Sort the table lines in the region. The position of point indicates the column                               |
+|                  | to be used for sorting, and the range of lines is the range between the nearest                              |
+|                  | horizontal separator lines, or the entire table.                                                             |
+|------------------+--------------------------------------------------------------------------------------------------------------|
+
+* Hyperlinks(超链接)
+|---------+----------------|
+| C-c C-l | 插入或修改链接 |
+|---------+----------------|
+
+** Link format(链接格式)
+#+begin_example link_format
+   [[link][description]]
+   [[link]]
+#+end_example link_format
+   - Description link of Example :: [[http://imljp.info][this is ljp's homepage!]]
+   - link of Example :: [[http://imljp.info]]
+   - Guide of org :: [[http://orgmode.org/orgguide.pdf][orgguide.pdf 快速手册(英文)]]
+** Internal links(内部链接)
+#+begin_example internal_links
+   [[Mytarget][Taget description]]   Descript方式的内部连接
+   [[Taget]]      　　　　　　　　　　　　直接内部链接
+#+end_example
+   - Description internal links ::[[Motion][这是一个描述式内部链接]] 链接到关键字Motion
+   - Taget internal links :: [[TAB]] 这是链接到TAB
+** External links(外部链接)
+Here are some examples.
+#+begin_example external_link
+http://www.astro.uva.nl/~dominik             on the web
+file:/home/dominik/images/jupiter.jpg        file, absolute path
+/home/dominik/images/jupiter.jpg             same as above
+file:papers/last.pdf                         file, relative path
+file:projects.org                            another Org file
+docview:papers/last.pdf::NNN                 open file in doc-view mode at page NNN
+id:B7423F4D-2E8A-471B-8810-C40F074717E9      Link to heading by ID
+news:comp.emacs                              Usenet link
+mailto:adent@galaxy.net                      Mail link
+vm:folder                                    VM folder link
+vm:folder#id                                 VM message link
+wl:folder#id                                 WANDERLUST message link
+mhe:folder#id                                MH-E message link
+rmail:folder#id                              RMAIL message link
+gnus:group#id                                Gnus article link
+bbdb:R.*Stallman                             BBDB link (with regexp)
+irc:/irc.com/#emacs/bob                      IRC link
+info:org:External%20links                    Info node link (with encoded space)
+#+end_example
+** Targeted links(目标链接)					   
+Here are some example.
+#+begin_example target_links
+[[file:~/code/main.c::255]]                  Find line 255
+[[file:~/xx.org::My Target]]                 Find ‘<<My Target>>’
+[[file:~/xx.org::#my-custom-id]]             Find entry with custom id
+#+end_example

@@ -1,0 +1,15 @@
+git 使用
+* 初始化
+git init
+* 配置
+git config user.name
+git config user.email
+* 暂存
+git add file
+* 提交
+git commit -m "some comment"
+* 创建分支
+查看 git branch
+创建 git branch branch_name
+* 切换分支
+git checkout branch_name

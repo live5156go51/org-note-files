@@ -1,0 +1,11 @@
+
+* change configure file
+  - conky中文乱码 的解决方法
+  - 打开配置文件：
+  - cd /etc/fonts/conf.d/
+  - sudo gedit 49-sansserif.conf 
+  - 将最下面的<string>sans-serif</string>
+  - 改为 <string>sans</string>
+
+
+  

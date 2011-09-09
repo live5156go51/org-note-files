@@ -1,0 +1,90 @@
+Emacs高效的yasnippet
+* 介绍yasnippet
+官方地址：http://code.google.com/p/yasnippet/
+
+想看原汁原味的介绍建议看官方文档，这里中文简要说明一下：
+
+首先如果你是Emacser，而你又没接触过yasnippet，请查看这里有一个很hacking的视频。
+地址：http://v.youku.com/v_show/id_XMjMxNDg5MjQ4.html
+
+YASnippet 是emacs高效一个通用的模板系统。它允许定义缩写并通过[TAB]键自动帮你展开。在我们平常编辑一经常复用的模板是非常有帮助的，比如本人平常做Latex
+ppt就用到yasnippet，就显得非常方便快捷。
+* 安装yasnippet
+ Yasnippet的安装详细已经有好多文章介绍，并且官方视频里也简洁的演示，这里给出最简单步骤：
+#+BEGIN_SRC INSTALL_YAS
+ - 下载：wget http://yasnippet.googlecode.com/files/yasnippet-bundle-0.6.1c.el.tgz
+ - 解压并移动emacs路径：tar -xvf yasnippet-bundle-0.6.1c.el.tgz && mv yasnippet-bundle.el ~/.emacs.d/plugins
+ - 编辑.emacs文件：(add-to-list 'load-path " ~/.emacs.d/plugins")
+                 (require 'yasnippet-bundle)
+ - 重启一下emacs,如果emacs设置有启动画面请按下[q]键就可以看到菜单里多一个yasnippet菜单，到些安装完毕。
+#+END_SRC
+* 使用yasnippet
+  安装好之后，我们就可以试试牛力方便的yasnippet；；；
+#+BEGIN_SRC USE_YAS
+  例如编辑一个C文件：emacs /tmp/yas_test.c
+  键入模板关键词inc 然后[TAB]键，就出现有模板选择
+  键入模板关键词main 然后[TAB]键，同样也出现一个我们常用main函数
+  简单的使用方法就是这样，是不是有很hacking的感觉，更多细节可以查看yasnippet菜单
+#+END_SRC
+* 定制自己的模板
+  - yasnippet的强大之处于允许用户自定义自己的模板，这里介绍它的定制功能，并通过latex-mode来演示它是如何高效编辑能力。这里演示用的Tex发行版本是texlive的latex-cjk-all扩展
+  - ubuntu 可以直接安装：sudo apt-get install texlive cjk-latex latex-cjk-all
+  - 定制自己的模板必须在.emacs配置文件里指定模板的位置,这一步必不可少，所以在.emacs加上：
+#+BEGIN_SRC DEFINE_AS
+(add-to-list 'load-path " ~/.emacs.d/plugins")
+                 (require 'yasnippet-bundle)
+(setq yas/root-directory "~/.emacs.d/snippets")                                                                                                          
+(yas/load-directory yas/root-directory)
+#+END_SRC
+这样.emacs的yasnippet就配置完成了，下来就是定制模板缩写词
+
+随便进入Emacs的一个mode模式,我演示这里是latex-mode,然后输入命令[M-x] yas/new-snippet即可在这个模式下建立模板
+
+输入yas/new-snippet命令，它会提示文件不存在，是否建立，这里直接键入[Enter]键，然后输入模块的名字。(注：这里模块的名字就是此模式下的缩写词即关键词)然后出现# -*- mode: snippet -*-  等字符，在这里删除它们，照着这里的演示一步一步来就要可以了。
+
+以新建立一个幻灯片为例子，可以这个来：
+
+#+BEGIN_SRC DEFINE_YAS -n
+  #contributor : ljp <ljp.gogo@gmail.com>
+  #name : Create a slide frame
+  # --
+  
+  \frame{\frametitle{${1:Slide title}}
+  \pause{}
+  \begin{itemize}
+     \item $0
+  \end{itemize} }
+#+END_SRC
+说明：snippet的语法变量是以$美元符开始的，根据变量$1 $2 $... 定义顺序光标移动位置，特殊的$0是最后光标停位置
+
+第1行是模板贡献者的一些信息
+
+第2行是模板说明，也就是用鼠标点击yasnippet菜单里相应模式的模板的一些文字提示(这里Create a slide frame 就可以知道它是创建一个幻灯片)
+
+第3行是语法要求，声明模板内容开始
+
+第4行以后的，就是模板的内容了。
+* 再以一个51外部中断函数举例
+  1. emacs /tmp/interrupt.c
+  2. [M-x] yas/new-snippet ->[Enter]键 -> 创建缩写关键词 interrupt ->[Enter]键
+#+BEGIN_SRC INTERRRU
+#contributor : ljp <ljp.gogo@gmail.com>
+#name : Create a 51 interrupt function
+# --
+
+void int${1:变量1}() interrupt ${2:变量2} using ${3:变量3} 
+{     
+    ${0:这里是变量光标最后停留位置}
+}
+#+END_SRC
+以上在C模式下，就可以键入关键词interrupt 然后[TAB]键，来创建一个51单片机外部中断
+* 参考资源
+  - 李杀网:http://xahlee.org/emacs/yasnippet_templates_howto.html
+
+  - YASnippet基础入门:http://blog.waterlin.org/articles/emacs-yasnippet-basic-usage.html
+
+  - 官方doc:http://yasnippet.googlecode.com/svn/trunk/doc/index.html
+
+  - 一个yasnippet模板快速制作PPT演示视频：http://v.youku.com/v_show/id_XMjMxNTQ1NzA4.html
+
+  - 个人代码仓：https://github.com/live5156go51

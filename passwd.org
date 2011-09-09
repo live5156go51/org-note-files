@@ -1,0 +1,10 @@
+
+* add new gmail
+  - ljp.gogo@gmail.com
+    - passed: ne* *************
+* register launchpad account
+  - Email: ljp.gogo@gmail.com
+  - ID: ljp-gogo
+  - url:https://launchpad.net/~ljp-gogo
+  - passwd: lj*.g***13*
+

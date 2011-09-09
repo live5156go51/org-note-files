@@ -1,0 +1,42 @@
+Mysql 简单操作
+* 连接与断开
+  - 本地连接 mysql -u user -p
+  - 远程连接 mysql -h host -u user -p
+    host为远程主机地址
+  - 连接并选定数据库 mysql -u user -p database
+  - 断开 quit
+  
+* 查看
+  - 查看版本、时间 SELECT version(), current_date;
+  - 当作计算器 SELECT 100*100;
+  - 查看用户 SELECT user();
+  - 查看数据库 SHOW databases;
+  - 查看数据表 SHOW tables;
+  - 查看表内容 DESCRIBE table;
+  - 查看当前操作数据库 SHOW DATABASE();
+* 创建删除修改
+  - 创建数据库 CREATE database;
+  - 创建数据表 CREATE table dt_name(name varchar(20));
+  - 删除数据表 DELETE FROM tables_name;
+  - 修改数据表 UPLOAD table_name SET name = 'myname' WHERE name = 'lichangyue';
+  
+* 数据表内容
+  - 写入数据表内容 INSERT INTO table_name values ('li','m','2010');
+  - 从文件载入数据表内容 LOAD DATA LOCAL INFILE '/path/file.txt' INTO TABLE db_name;
+  - 检索表信息
+      - 检索所有行 SELECT * FROM table_name;
+      - 检索特殊行 SELECT * FROM table_name WHERE name = 'myname';
+      - 检索特殊列 SELECT name, sex FROM class;
+      - 检索重复列
+	检索重复列来显示单一列 SELECT DISTINCT name FROM class;
+  - 分类行 ORDER BY
+    排序 SELECT name,sex FROM class ORDER BY name;
+#+BEGIN_SRC select_tables
+    SELECT语句用来检索数据表中的信息
+    SELECT what_to_select
+    FROM which_table
+    WHERE conditions_to_satisfy;
+what_to_select指出你想要看到的内容，可以是列的一个表，或*表示“所有的列”。which_table指出你想要从其检索数据的表。WHERE子句是可选项，如果选择该项，conditions_to_satisfy指定行必须满足的检索条件。
+#+END_SRC    
+* 其它
+  - 选择数据库 USE database;

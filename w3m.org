@@ -1,0 +1,40 @@
+w3m 使用笔记
+* 浏览器使用基本的快捷键
+** 浏览器光标式页面操作
+	- SPACE/C-v 向前翻页
+	- b/M-v 向后翻页
+	- ikjl/C-f[b/n/p/a/e]移动光标
+	- z 屏幕刷新光标处居中
+	- TAB 下一个超链接
+	- M-TAB 向前一个超链接
+** 超链接操作
+	- U 输入网址打开链接
+	- a 保存链接到文件
+	- = 查看页面信息
+	- u 查看链接地址
+	- i 查看图片链接
+	- C-g 查看当前行的信息
+	- C-h 查看历史
+** Buffer
+	- B 向后返回一个Buffer
+	- s 选择Buffer
+	- R　重载Buffer
+	- C-l 刷新屏幕
+	- S　保存Buffer
+** 选择Buffer(s)模式
+	- jk/C-n[p]移动
+	- D 删除Buffer
+* 书签
+	- M-a 　增加书签
+	- M-b 列表书签
+** Shell
+	- ! 执行命令
+	- @ 执行shell命令并查看
+	- # 通过管道方式查看命令
+* 其它
+	- H 帮助系统 
+	- o w3m属性选项设置
+* HTML格式转换
+	- html2txt
+	cat file.html | w3m -dump -T text/html > file.txt 
+

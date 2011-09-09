@@ -1,0 +1,6 @@
+ 
+wget http://www.kegel.com/wine/winetricks
+chmod 777 winetricks 
+sh winetricks msxml3 gdiplus riched20 riched30 vcrun6 vcrun2005sp1
+chmod 777 QQ2010SP3.1.exe 
+wine QQ2010SP3.1.exe 

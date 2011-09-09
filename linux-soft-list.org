@@ -1,0 +1,77 @@
+linux软件列表清单
+* 系统工具
+  - wine
+  - virtualbox
+  - Docky
+  - ubuntu tweak
+  - ailurus
+  - tmux
+* 网络
+  - chrome
+  - bmon(流量)
+  - webhttrack(网站镜像)
+  - wireshark
+  - zenmap
+  - etherape
+  - gns3
+  - putty
+* 编程
+  - emacs
+    - yasnippet
+  - vim
+  - codeblocks
+  - git
+  - devhelp
+  - ghex
+* 科研
+  - 数学
+    - scilab
+    - maxima
+    - gnu actave
+  - TeX
+    - texlive
+    - latex-cjk-chinese*
+    - latex-beamer
+    - auctex
+    - texmaker
+    - latexdraw
+    - latex2html
+* 通讯
+  - wine-qq
+  - wing微博
+  - optenfetion
+  - skype
+* 影音
+  - arista transcoder
+  - audacity
+  - avidemux
+  - desktop recorder
+  - foobnix music play
+  - hydrogen
+  - istanbul
+  - kino
+  - linux multimedia studio
+  - lives
+  - moovida media center
+  - openshot video editor
+  - pitivi
+  - videoLAN Movie Creator
+  - ppstream
+  - 鲁班歌词(插件)
+  - gmbox
+  - mplay ffmpeg
+* 娱乐
+  - sl
+  - typespeed
+  - playonlinux
+  - linux娱乐
+* 工具
+  - 星际译王
+  - xournal(阅读)
+  - blender
+  - gimp
+* 美化
+  - Macubuntu
+  - conky
+* 输入法
+  - fcitx
