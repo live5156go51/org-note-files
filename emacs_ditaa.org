@@ -1,0 +1,88 @@
+#+TITLE:     emacs ditaa 配置
+#+AUTHOR:    Junstrix
+#+EMAIL:     junstrix@gmail.com
+#+DATE:      2011-09-13 二
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  zh_cn
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: http://imljp.info
+#+XSLT:
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [presentation]
+#+BEAMER_FRAME_LEVEL: 2
+
+#+BEAMER_HEADER_EXTRA: \usetheme{default}\usecolortheme{default}
+#+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_envargs(Env Args) %4BEAMER_col(Col) %8BEAMER_extra(Extra)
+#+PROPERTY: BEAMER_col_ALL 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 :ETC
+
+
+ditaa 工具能够帮我们把ASCII图转成漂亮的图片,结合emacs in org-mode,用artist-mode,可以方便画出
+漂亮的流程图。官方主页:[[http://ditaa.sourceforge.net/][ditaa --DIagrams Through Ascii Art]]
+* 下载安装
+ http://ditaa.sourceforge.net/#download
+#+begin_src sh
+ unzip ditaa_xx.zip
+ cp ditaa_xx.jar ~/.emacs.d/plugins/ditaa
+#+end_src
+* emacs 配置
+参考:http://doc.norang.ca/org-mode.html#sec-13-1
+#+begin_src emacs-lisp
+(setq org-ditaa-jar-path "~/.emacs.d/plugins/ditaa/ditaa0_9.jar")
+;(setq org-plantuml-jar-path "~/java/plantuml.jar")
+
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+
+(org-babel-do-load-languages
+ (quote org-babel-load-languages)
+ (quote ((emacs-lisp . t)
+         (dot . t)
+         (ditaa . t)
+         (R . t)
+         (python . t)
+         (ruby . t)
+         (gnuplot . t)
+         (clojure . t)
+         (sh . t)
+         (ledger . t)
+         (org . t)
+         (plantuml . t)
+         (latex . t))))
+
+; Do not prompt to confirm evaluation
+; ; This may be dangerous - make sure you understand the consequences
+; ; of setting this -- see the docstring for details
+(setq org-confirm-babel-evaluate nil)
+#+end_src
+* didtaa 使用
+ - artist-mode :: 具体使用请查看 http://www.cinsk.org/emacs/emacs-artist.html
+ - ditaa org-mode file :: 相关快捷键 C-c c 编译 C-c C-x C-v 可以查看图片
+由于中文支持不太好，要配置ditaa编码，建议使用UTF-8,org-mode =#+LANGUAGE= 设置成： =#+LANGUAGE:  zh_cn=
+#+begin_example
+#+begin_src ditaa :file helloworld.png :cmdline -r -s 1.5 -e UTF-8
++-----------+
+| cBLU      |
+| 你好        |
+|    +------+
+|    |cPNK  |
+|    |世界    |
++----+------+
+#+end_src  
+#+end_example
+ - 效果 ::
+#+begin_src ditaa :file helloworld.png :cmdline -r -s 1.5 -e UTF-8
++-----------+
+| cBLU      |
+| 你好        |
+|    +------+
+|    |cPNK  |
+|    |世界    |
++----+------+
+#+end_src  
+  - Tips :: 结合org-mode TeX 或 Tex beamer 可以写各种漂亮的slide和文档了
