@@ -26,8 +26,11 @@
    - 下载
    - 解压安装
      tar xvf org-xxx.tar -C \~/path/to/plugins
+
      make 
+
      make install
+
    - 设置.emacs
 #+srcname: Emacs Lisp
 #+begin_src Emacs Lisp
@@ -110,7 +113,7 @@ with its own headline, is displayed in a block:
     :BEAMER_env: example
     :BEAMER_col: 0.6
     :END:
-　[[file://tmp/FUbib.png]]
+　[[file://tmp/backgroup01.jpg]]
 
 ** 代码演示
    :PROPERTIES:
